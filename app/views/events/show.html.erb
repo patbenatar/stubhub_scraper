@@ -1,0 +1,26 @@
+<%= link_to "&laquo; Back to All Events".html_safe, events_path %>
+<h1><%= event.name %></h1>
+<h2>Batches</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Scraped</th>
+      <th># tickets</th>
+      <th>Lowest price</th>
+      <th>Highest price</th>
+      <th>Average price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% event.ordered_batches.each do |batch| %>
+      <tr>
+        <td><%= link_to l(batch.scraped_at, format: :detail), batch %></td>
+        <td><%= batch.ticket_prices.count %></td>
+        <td><%= Money.new(batch.ticket_prices.minimum(:price_cents)).format %></td>
+        <td><%= Money.new(batch.ticket_prices.maximum(:price_cents)).format %></td>
+        <td><%= Money.new(batch.ticket_prices.average(:price_cents)).format %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
