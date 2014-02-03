@@ -16,6 +16,7 @@ group :development do
   gem "pry"
   gem "capistrano", "~> 3.1.0"
   gem "capistrano-bundler", "~> 1.1.1"
+  gem "capistrano-rbenv", "~> 2.0.2"
 end
 
 group :staging, :production do
