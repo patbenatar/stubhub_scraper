@@ -10,6 +10,9 @@ set :repo_url, "git@github.com:patbenatar/stubhub_scraper.git"
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, "/home/deploy/www/stubhub_scraper"
 
+set :rbenv_ruby, "2.0.0-p353"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
 # Default value for :scm is :git
 # set :scm, :git
 
