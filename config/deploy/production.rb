@@ -1,4 +1,20 @@
-server "198.199.94.52", user: "rails", port: 2444
+# Simple Role Syntax
+# ==================
+# Supports bulk-adding hosts to roles, the primary
+# server in each group is considered to be the first
+# unless any hosts have the primary property set.
+# Don't declare `role :all`, it's a meta role
+role :app, %w{deploy@198.199.94.52}
+# role :web, %w{deploy@example.com}
+# role :db,  %w{deploy@example.com}
+
+# Extended Server Syntax
+# ======================
+# This can be used to drop a more detailed server
+# definition into the server list. The second argument
+# something that quacks like a hash can be used to set
+# extended properties on the server.
+server "198.199.94.52", user: "deploy", port: 2444, roles: %w{app}
 # server "example.com", user: "rails", roles: %w{web app}
 
 # you can set custom ssh options

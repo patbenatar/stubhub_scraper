@@ -9,13 +9,13 @@ gem "jquery-rails"
 gem "turbolinks"
 gem "jbuilder", "~> 1.2"
 gem "capybara"
-gem "selenium-webdriver"
 gem "capybara-webkit"
 gem "money-rails"
-gem "capistrano", "~> 3.1.0"
 
 group :development do
   gem "pry"
+  gem "capistrano", "~> 3.1.0"
+  gem "capistrano-bundler", "~> 1.1.1"
 end
 
 group :staging, :production do
