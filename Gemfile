@@ -13,7 +13,6 @@ gem "selenium-webdriver"
 gem "capybara-webkit"
 gem "money-rails"
 gem "capistrano", "~> 3.1.0"
-gem "capistrano-unicorn", "~> 0.2.0"
 
 group :development do
   gem "pry"
