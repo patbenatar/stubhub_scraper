@@ -26,7 +26,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :pty, true
 
 # Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml}
 
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -60,11 +60,4 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # end
 
-desc "Symlink shared config files"
-task :symlink_config_files do
-  run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
-end
-
-after "deploy", "deploy:symlink_config_files"
-
-after "deploy:restart", "unicorn:restart"   # app preloaded
+after "deploy:restart", "unicorn:restart"
