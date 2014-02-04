@@ -22,5 +22,5 @@ group :development do
 end
 
 group :staging, :production do
-  gem "unicorn"
+  gem "unicorn-rails", "~> 1.1.0"
 end
