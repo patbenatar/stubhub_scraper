@@ -32,7 +32,7 @@ listen "/tmp/unicorn.stubhub_scraper.sock" #, :backlog => 64
 timeout 60
 
 # feel free to point this anywhere accessible on the filesystem
-pid "/home/deploy/www/stubhub_scraper/shared/pids/unicorn.pid"
+pid "/home/deploy/www/stubhub_scraper/shared/tmp/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
