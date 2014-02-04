@@ -18,6 +18,7 @@ group :development do
   gem "capistrano-bundler", "~> 1.1.1"
   gem "capistrano-rbenv", "~> 2.0.2"
   gem "capistrano-rails", "~> 1.1.1"
+  gem "capistrano-unicorn", github: "patbenatar/capistrano-unicorn"
 end
 
 group :staging, :production do

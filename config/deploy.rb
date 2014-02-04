@@ -59,3 +59,12 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 #   end
 
 # end
+
+desc "Symlink shared config files"
+task :symlink_config_files do
+  run "#{ try_sudo } ln -s #{ deploy_to }/shared/config/database.yml #{ current_path }/config/database.yml"
+end
+
+after "deploy", "deploy:symlink_config_files"
+
+after "deploy:restart", "unicorn:restart"   # app preloaded
