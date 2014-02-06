@@ -38,6 +38,7 @@ class Scraper
         begin
           section = tr.find(".sectionName").text
           next if section.downcase == "parking" # ignore parking
+          next if section.downcase.include? "garage lot"
 
           data = {
             section: section,
