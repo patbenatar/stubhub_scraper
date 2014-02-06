@@ -1,5 +1,3 @@
-require 'capistrano/unicorn'
-
 # config valid only for Capistrano 3.1
 lock "3.1.0"
 
@@ -61,5 +59,46 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 #   end
 
 # end
+
+set :unicorn_pid, "#{fetch(:shared_path)}/tmp/pids/unicorn.pid"
+set :unicorn_config "config/unicorn.rb"
+
+namespace :unicorn do
+  desc 'Stop Unicorn'
+  task :stop do
+    on roles(:app) do
+      if test("[ -f #{fetch(:unicorn_pid)} ]")
+        execute :kill, capture(:cat, fetch(:unicorn_pid))
+      end
+    end
+  end
+
+  desc 'Start Unicorn'
+  task :start do
+    on roles(:app) do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, "exec unicorn -c #{fetch(:unicorn_config)} -D"
+        end
+      end
+    end
+  end
+
+  desc 'Reload Unicorn without killing master process'
+  task :reload do
+    on roles(:app) do
+      if test("[ -f #{fetch(:unicorn_pid)} ]")
+        execute :kill, '-s USR2', capture(:cat, fetch(:unicorn_pid))
+      else
+        error 'Unicorn process not running'
+      end
+    end
+  end
+
+  desc 'Restart Unicorn'
+  task :restart
+  before :restart, :stop
+  before :restart, :start
+end
 
 after "deploy:restart", "unicorn:restart"
