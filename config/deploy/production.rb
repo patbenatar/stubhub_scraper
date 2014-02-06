@@ -17,6 +17,8 @@ role :db,  %w{deploy@198.199.94.52}
 server "198.199.94.52", user: "deploy", port: 2444, roles: %w{app}
 # server "example.com", user: "rails", roles: %w{web app}
 
+set :rails_env, "production"
+
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
 # you can see them in [net/ssh documentation](http://net-ssh.github.io/net-ssh/classes/Net/SSH.html#method-c-start)
