@@ -60,15 +60,15 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 
 # end
 
-set :unicorn_pid, "#{fetch(:shared_path)}/tmp/pids/unicorn.pid"
-set :unicorn_config, "#{current_path}/config/unicorn.rb"
+set :unicorn_pid, "tmp/pids/unicorn.pid"
+set :unicorn_config, "config/unicorn.rb"
 
 namespace :unicorn do
   desc 'Stop Unicorn'
   task :stop do
     on roles(:app) do
-      if test("[ -f #{fetch(:unicorn_pid)} ]")
-        execute :kill, capture(:cat, fetch(:unicorn_pid))
+      if test("[ -f #{release_path.join(fetch(:unicorn_pid))} ]")
+        execute :kill, capture(:cat, release_path.join(fetch(:unicorn_pid)))
       end
     end
   end
@@ -78,7 +78,7 @@ namespace :unicorn do
     on roles(:app) do
       within current_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, "exec unicorn -c #{fetch(:unicorn_config)} -D"
+          execute :bundle, "exec unicorn -c #{release_path.join(fetch(:unicorn_config))} -D"
         end
       end
     end
@@ -87,8 +87,8 @@ namespace :unicorn do
   desc 'Reload Unicorn without killing master process'
   task :reload do
     on roles(:app) do
-      if test("[ -f #{fetch(:unicorn_pid)} ]")
-        execute :kill, '-s USR2', capture(:cat, fetch(:unicorn_pid))
+      if test("[ -f #{release_path.join(fetch(:unicorn_pid))} ]")
+        execute :kill, '-s USR2', capture(:cat, release_path.join(fetch(:unicorn_pid)))
       else
         error 'Unicorn process not running'
       end
