@@ -61,7 +61,7 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 # end
 
 set :unicorn_pid, "#{fetch(:shared_path)}/tmp/pids/unicorn.pid"
-set :unicorn_config, "config/unicorn.rb"
+set :unicorn_config, "#{current_path}/config/unicorn.rb"
 
 namespace :unicorn do
   desc 'Stop Unicorn'
