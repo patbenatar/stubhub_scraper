@@ -1,4 +1,4 @@
-<h1>Events</h1>
+<h1>Events (<%= link_to "new", new_event_path %>)</h1>
 
 <table>
   <thead>
@@ -14,7 +14,7 @@
     <% events.each do |event| %>
       <tr>
         <td><%= link_to event.name, event %></td>
-        <td><%#= l event.occurs_at, format: :detail %></td>
+        <td><%= l event.occurs_at, format: :detail %></td>
         <td><%= l event.start_scraping_at, format: :detail %></td>
         <td><%= l event.stop_scraping_at, format: :detail %></td>
         <td><%= event.batches.count %></td>

@@ -28,7 +28,7 @@ class Scraper
     total_pages = pagination_form.find(".nrPages").text.gsub(/\D/, "").to_i
 
     (1..total_pages).each do |page_num|
-      puts "---- PAGE #{page_num}"
+      puts "- Page #{page_num}"
 
       pagination_form.find("input").set page_num
       pagination_form.click_button "Go"

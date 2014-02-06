@@ -11,6 +11,8 @@ gem "jbuilder", "~> 1.2"
 gem "capybara"
 gem "capybara-webkit"
 gem "money-rails"
+gem "active_attr"
+gem "chronic"
 
 group :development do
   gem "pry"

@@ -1,6 +1,8 @@
 desc "Scrape StubHub for ticket prices"
 task scrape: :environment do
   Event.active.find_each(batch_size: 100) do |event|
+    puts "Scraping #{event.name}"
+
     scraper = Scraper.new(event.path)
     scraper.scrape
 
