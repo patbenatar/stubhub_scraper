@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index; end
 
   def show
-    @batches = event.ordered_batches.page(params[:page]).per(2)
+    @batches = event.ordered_batches.page(params[:page]).per(100)
   end
 
   def new; end
