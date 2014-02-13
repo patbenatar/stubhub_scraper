@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   helper_method :events, :event, :event_form
 
   def index; end
-  def show; end
+
+  def show
+    @batches = event.ordered_batches.page(params[:page]).per(2)
+  end
+
   def new; end
 
   def create

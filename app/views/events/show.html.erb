@@ -13,7 +13,7 @@
     </tr>
   </thead>
   <tbody>
-    <% event.ordered_batches.each do |batch| %>
+    <% @batches.each do |batch| %>
       <tr>
         <td><%= link_to l(batch.scraped_at, format: :detail), batch %></td>
         <td><%= batch.ticket_prices.count %></td>
@@ -24,3 +24,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @batches %>

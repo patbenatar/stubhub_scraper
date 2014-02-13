@@ -13,6 +13,7 @@ gem "capybara-webkit"
 gem "money-rails"
 gem "active_attr"
 gem "chronic"
+gem "kaminari"
 
 group :development do
   gem "pry"
