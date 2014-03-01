@@ -4,8 +4,8 @@
 
 <%= form_for event_report_form, method: :post, url: event_reports_path(event) do |form| %>
   <div>
-    <%= form.label :section %>
-    <%= form.text_field :section %>
+    <%= form.label :sections %>
+    <%= form.text_field :sections, size: 100 %> (comma separated)
   </div>
   <div>
     <%= form.label :quantity %>

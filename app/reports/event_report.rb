@@ -1,4 +1,4 @@
-class EventReport < Struct.new(:event, :query_attributes)
+class EventReport < Struct.new(:event, :query_values)
   def lowest_price_by_day
     Util.grouped_cents_to_dollars ticket_prices.
       group_by_day("batches.scraped_at").
@@ -16,17 +16,17 @@ class EventReport < Struct.new(:event, :query_attributes)
   def ticket_prices
     query = event.ticket_prices
 
-    if query_attributes[:section].present?
+    if query_values[:sections].any?
       query = query.where(
-        "lower(ticket_prices.section) = ?",
-        query_attributes[:section].downcase
+        "lower(ticket_prices.section) IN (?)",
+        query_values[:sections].map(&:downcase),
       )
     end
 
-    if query_attributes[:quantity] > 0
+    if query_values[:quantity] > 0
       query = query.
-        where("ticket_prices.quantity_min <= ?", query_attributes[:quantity]).
-        where("ticket_prices.quantity_max >= ?", query_attributes[:quantity])
+        where("ticket_prices.quantity_min <= ?", query_values[:quantity]).
+        where("ticket_prices.quantity_max >= ?", query_values[:quantity])
     end
 
     query

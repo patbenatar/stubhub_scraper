@@ -4,8 +4,8 @@
 <h2>Report</h2>
 
 <dl>
-  <dt>Section</dt>
-  <dd><%= event_report_form.section.present? ? event_report_form.section : "Any" %></dd>
+  <dt>Sections</dt>
+  <dd><%= event_report_form.cleansed_sections.any? ? event_report_form.cleansed_sections.join(", ") : "Any" %></dd>
   <dt>Quantity</dt>
   <dd><%= event_report_form.quantity > 0 ? event_report_form.quantity : "Any" %></dd>
 </dl>
