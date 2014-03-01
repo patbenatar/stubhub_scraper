@@ -1,0 +1,17 @@
+<%= link_to "&laquo; Back to Event".html_safe, event %>
+ | <%= link_to "Create Another Report", new_event_report_path(event) %>
+<h1><%= event.name %></h1>
+<h2>Report</h2>
+
+<dl>
+  <dt>Section</dt>
+  <dd><%= event_report_form.section.present? ? event_report_form.section : "Any" %></dd>
+  <dt>Quantity</dt>
+  <dd><%= event_report_form.quantity > 0 ? event_report_form.quantity : "Any" %></dd>
+</dl>
+
+<h3>Lowest Last 24 Hours</h3>
+<%= line_chart event_report.lowest_price_last_24_hours %>
+
+<h3>Lowest Daily</h3>
+<%= line_chart event_report.lowest_price_by_day %>

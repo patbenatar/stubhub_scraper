@@ -1,0 +1,17 @@
+<%= link_to "&laquo; Back to Event".html_safe, event %>
+<h1><%= event.name %></h1>
+<h2>Create Report</h2>
+
+<%= form_for event_report_form, method: :post, url: event_reports_path(event) do |form| %>
+  <div>
+    <%= form.label :section %>
+    <%= form.text_field :section %>
+  </div>
+  <div>
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+  <div>
+    <%= form.submit "Show me the money!" %>
+  </div>
+<% end %>

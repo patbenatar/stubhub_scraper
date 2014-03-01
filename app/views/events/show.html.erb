@@ -1,5 +1,7 @@
 <%= link_to "&laquo; Back to All Events".html_safe, events_path %>
 <h1><%= event.name %></h1>
+<%= link_to "Create Report", new_event_report_path(event) %>
+
 <h2>Batches</h2>
 
 <table>
