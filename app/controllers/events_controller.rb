@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  helper_method :events, :event, :event_form
+  helper_method :upcoming_events, :past_events, :event, :event_form
 
   def index; end
 
@@ -29,8 +29,14 @@ class EventsController < ApplicationController
 
   private
 
-  def events
-    @events ||= Event.order("stop_scraping_at DESC")
+  def upcoming_events
+    @upcoming_events ||= Event.where("occurs_at > ?", Time.now).
+      order("occurs_at ASC")
+  end
+
+  def past_events
+    @past_events ||= Event.where("occurs_at <= ?", Time.now).
+      order("occurs_at DESC")
   end
 
   def event

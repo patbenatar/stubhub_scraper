@@ -1,26 +1,7 @@
 <h1>Events (<%= link_to "new", new_event_path %>)</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Occurs</th>
-      <th>Start Scraping</th>
-      <th>Stop Scraping</th>
-      <th># scrapes performed</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% events.each do |event| %>
-      <tr>
-        <td><%= link_to event.name, event %></td>
-        <td><%= l event.occurs_at, format: :detail %></td>
-        <td><%= l event.start_scraping_at, format: :detail %></td>
-        <td><%= l event.stop_scraping_at, format: :detail %></td>
-        <td><%= event.batches.count %></td>
-        <td align="right"><%= link_to "Edit", edit_event_path(event) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>Upcoming</h2>
+<%= render "table", events: upcoming_events %>
+
+<h2>Past</h2>
+<%= render "table", events: past_events %>
