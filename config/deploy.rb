@@ -102,3 +102,5 @@ namespace :unicorn do
 end
 
 after "deploy:restart", "unicorn:restart"
+
+after "deploy", "deploy:restart"
