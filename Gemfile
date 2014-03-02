@@ -15,6 +15,8 @@ gem "chronic"
 gem "kaminari"
 gem "chartkick"
 gem "groupdate"
+gem "sidekiq"
+gem "sinatra"
 
 group :development do
   gem "pry"

@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 StubhubScraper::Application.routes.draw do
   root to: "events#index"
 
@@ -6,4 +8,6 @@ StubhubScraper::Application.routes.draw do
   end
 
   resources :batches, only: :show
+
+  mount Sidekiq::Web => "/sidekiq"
 end

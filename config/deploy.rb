@@ -13,6 +13,8 @@ set :deploy_to, "/home/deploy/www/stubhub_scraper"
 set :rbenv_ruby, "2.0.0-p353"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
+set(:sidekiq_cmd) { "#{bundle_cmd} exec sidekiq" }
+
 # Default value for :scm is :git
 # set :scm, :git
 
