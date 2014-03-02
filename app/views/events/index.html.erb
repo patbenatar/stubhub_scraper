@@ -8,6 +8,7 @@
       <th>Start Scraping</th>
       <th>Stop Scraping</th>
       <th># scrapes performed</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
         <td><%= l event.start_scraping_at, format: :detail %></td>
         <td><%= l event.stop_scraping_at, format: :detail %></td>
         <td><%= event.batches.count %></td>
+        <td align="right"><%= link_to "Edit", edit_event_path(event) %></td>
       </tr>
     <% end %>
   </tbody>

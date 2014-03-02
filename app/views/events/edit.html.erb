@@ -1,0 +1,7 @@
+<h1><%= event.name %></h1>
+<h1>Edit Event</h1>
+
+<%= form_for event_form, builder: Forms::Builder, url: event_path(event), method: :put do |form| %>
+  <%= render form %>
+  <%= form.submit "Update" %>
+<% end %>

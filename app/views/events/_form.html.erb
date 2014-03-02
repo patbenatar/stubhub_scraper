@@ -1,0 +1,20 @@
+<div>
+  <%= form.label :name, "Name" %>
+  <%= form.text_field :name %>
+</div>
+<div>
+  <%= form.label :path, "Path on stubhub.com to scrape" %>
+  <%= form.text_field :path %>
+</div>
+<div>
+  <%= form.label :occurs_at_date, "Occurs at" %>
+  <%= form.date_and_time_field :occurs_at %>
+</div>
+<div>
+  <%= form.label :start_scraping_at_date, "Start Scraping" %>
+  <%= form.date_and_time_field :start_scraping_at %>
+</div>
+<div>
+  <%= form.label :stop_scraping_at_date, "Stop Scraping" %>
+  <%= form.date_and_time_field :stop_scraping_at %>
+</div>

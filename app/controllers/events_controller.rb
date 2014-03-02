@@ -17,6 +17,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if event_form.valid? && event.update_attributes(event_form_attributes)
+      redirect_to events_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def events
@@ -28,7 +38,10 @@ class EventsController < ApplicationController
   end
 
   def event_form
-    @event_form ||= EventForm.new(params[:event_form])
+    @event_form ||= EventForm.new.tap do |form|
+      form.attributes = event.attributes
+      form.attributes = params[:event_form]
+    end
   end
 
   def event_form_attributes
